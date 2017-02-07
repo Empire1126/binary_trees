@@ -8,12 +8,13 @@ public class console_interface
 	static singlehasher hashlistsmall = new singlehasher();
 	static totalhasher hashlist = new totalhasher();// this is the hashing list that will be used to create a hash list for the text
 	static binarytree binarytree = new binarytree();// binary tree to be used to sort data
-	public static void main(String[] args)
+	public static void main(String[] args) // here is the console interface for the binary tree
 	{
-		Scanner txtin= new Scanner(System.in);
+		Scanner txtin= new Scanner(System.in); // we will use a scanner to detect user input
 		System.out.println("welcome to my binary tree string console interface!");
-		String in= "";
-		while(true)
+		String in= ""; // dummy string to store input from user
+		while(true) // keep the user console interface going until the user specifies otherwise
+			//the predefined commands will determine what action the system will take to modify the tree.
 		{
 			System.out.println("\n please input a command or type \"help\" for options ");
 			in = txtin.next();
@@ -44,6 +45,7 @@ public class console_interface
 		}
 
 	
+	//all of the below methods simply format the string input to the tree and apply the appropriate command drawn from the binary tree itself
 	public static void insert(String input)
 	{
 		input = formatstring(input);
@@ -93,6 +95,7 @@ public class console_interface
 		binarytree.totalwordsfind(binarytree.selector);
 		System.out.println(" the total words in the list are " + binarytree.uniquewords);
 	}
+	//this method will simply reset the binary tree to an empty tree.
 	public static void reset()
 	{
 		

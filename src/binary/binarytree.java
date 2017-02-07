@@ -97,15 +97,18 @@ public void add(String input)
 	uniquewordcount++;
 	
 }
-public void delete(String input)
+public void delete(String input) // here we will delete a node from the tree, reducing its count if the count is > 1 and removing the mode all
+//together when the count is reduced below 1
 {
-	selector = root;
-	previous= root;
+	selector = root; // reset the selector node
+	previous= selector; // reset the previous node
 	
-	while(selector != null &&input.compareTo(((String)selector.getval()))!=0)
+	while(selector != null &&input.compareTo(((String)selector.getval()))!=0) // while we haven't found the node to remove from yet and haven't
+		//fallen off of the tree
 	{
 		
-		if(input.compareTo((String) selector.getval()) < 0)
+		if(input.compareTo((String) selector.getval()) < 0) // keep testing for if the string to remove is less than or greater than the current
+			//node we are at and traversing the list based on that comparison 
 		{
 			previous = selector;
 			selector = selector.getLC();
@@ -118,12 +121,15 @@ public void delete(String input)
 		}
 		
 	}
-	if(selector == null)
+	//if we found the 
+	if(selector == null) // if we reach the end of the list let he user know the node doesn't exist
 	{
 		System.out.println(" the string you whished to delete is not in the tree ");
 		return;
 	}	
-	if(selector.getcount() == 1)
+	if(selector.getcount() == 1) // if the correct node has 1 count left we will find the max node to the left of the current node that equaled 
+		// the string to delete and then we will switch the max value we find with the current node and remove the reference to the max value 
+		//in the left side of the tree.
 	{
 		binarynode temp = selector;
 		previous = selector;
@@ -139,7 +145,7 @@ public void delete(String input)
 		System.out.println(" the word "+input+" was deleted from the tree ");
 		return;
 	}
-	else
+	else // if the found word doesn't have a count of 1  simply decrement the count
 	{
 		selector.setcount(selector.getcount()-1);
 		System.out.println(" the word " + input+ " has had its count decreased to "+ selector.getcount());
@@ -147,15 +153,17 @@ public void delete(String input)
 	}
 	
 }
-public void search(String input)
+public void search(String input) //this method will search the binary tree for the string given and print out the node contaning the same string
+//if it is found
 {
 selector= root;
 previous = selector;
-while(selector != null &&input.compareTo(((String)selector.getval()))!=0)
+while(selector != null &&input.compareTo(((String)selector.getval()))!=0) // while we haven't found the word or fallen off the list
 
 	{
 	 
-	   if(input.compareTo((String)selector.getval()) < 0)
+	   if(input.compareTo((String)selector.getval()) < 0)  //while searching the list compare the input to the traversed nodes and modify the
+		   //traversal path based on those results.
 	   {
 		   previous = selector;
 		   selector = selector.getLC();
@@ -169,11 +177,12 @@ while(selector != null &&input.compareTo(((String)selector.getval()))!=0)
 	  
 	   
 	}
-	if(selector == null)
+	if(selector == null) // if if we fell off the tree then the word isnt in the list
 	{
 	System.out.println(" the string you whished to find is not in the tree ");
 	return;
 	}
+	//otherwise print our the found string and its count
 	System.out.println(" the word you wanted was " + (String)selector.getval()+ " with a count of " + selector.getcount());
 	return;
 	

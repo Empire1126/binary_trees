@@ -127,20 +127,25 @@ public void delete(String input) // here we will delete a node from the tree, re
 		System.out.println(" the string you whished to delete is not in the tree ");
 		return;
 	}	
-	if(selector.getcount() == 1) // if the correct node has 1 count left we will find the max node to the left of the current node that equaled 
+	else if(selector.getcount() == 1) // if the correct node has 1 count left we will find the max node to the left of the current node that equaled 
 		// the string to delete and then we will switch the max value we find with the current node and remove the reference to the max value 
 		//in the left side of the tree.
 	{
 		binarynode temp = selector;
-		previous = selector;
+		
+	
 		String maxleft =  (String)selector.getval();
+		int maxcount = selector.getcount();
+		selector = selector.getLC();
 		while (selector.getRC() != null)
 		{
 			previous = selector;
 			selector = selector.getRC();
 		}
 		maxleft = (String) selector.getval();
+		maxcount = selector.getcount();
 		temp.setval(maxleft);
+		temp.setcount(maxcount);
 		previous.setRC(null);
 		System.out.println(" the word "+input+" was deleted from the tree ");
 		return;

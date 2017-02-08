@@ -121,7 +121,7 @@ public void delete(String input) // here we will delete a node from the tree, re
 		}
 		
 	}
-	//if we found the 
+	//if we found the right string to delete
 	if(selector == null) // if we reach the end of the list let he user know the node doesn't exist
 	{
 		System.out.println(" the string you whished to delete is not in the tree ");
@@ -131,25 +131,63 @@ public void delete(String input) // here we will delete a node from the tree, re
 		// the string to delete and then we will switch the max value we find with the current node and remove the reference to the max value 
 		//in the left side of the tree.
 	{
+		if(selector.getLC()==null&&selector.getRC()==null)
+		{
+			
+			if(input.compareTo((String) previous.getval())<0)
+			{
+				previous.setLC(null);
+				
+			}
+			else
+			{
+				previous.setRC(null);				
+			}
+			System.out.println(" the word "+input+" was deleted from the tree ");
+			return;
+			
+		}
+		else if(selector.getRC()!=null)
+		{
 		binarynode temp = selector;
-		
-	
 		String maxleft =  (String)selector.getval();
 		int maxcount = selector.getcount();
-		selector = selector.getLC();
-		while (selector.getRC() != null)
+		
+		selector = selector.getRC();
+		while (selector.getLC() != null)
 		{
 			previous = selector;
-			selector = selector.getRC();
+			selector = selector.getLC();
 		}
 		maxleft = (String) selector.getval();
 		maxcount = selector.getcount();
 		temp.setval(maxleft);
 		temp.setcount(maxcount);
-		previous.setRC(null);
+		previous.setLC(selector.getLC());
 		System.out.println(" the word "+input+" was deleted from the tree ");
 		return;
+		}
+		else
+		{
+			binarynode temp = selector;
+			String maxleft =  (String)selector.getval();
+			int maxcount = selector.getcount();	
+			selector = selector.getLC();
+			while (selector.getRC() != null)
+			{
+				previous = selector;
+				selector = selector.getRC();
+			}
+			maxleft = (String) selector.getval();
+			maxcount = selector.getcount();
+			temp.setval(maxleft);
+			temp.setcount(maxcount);
+			previous.setRC(selector.getRC());
+			System.out.println(" the word "+input+" was deleted from the tree ");
+			return;
+		}
 	}
+	
 	else // if the found word doesn't have a count of 1  simply decrement the count
 	{
 		selector.setcount(selector.getcount()-1);

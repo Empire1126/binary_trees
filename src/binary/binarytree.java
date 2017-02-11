@@ -16,7 +16,7 @@ public binarytree()
 }
 public binarytree(binarynode f)
 {
-root = f;	//if we pass the constructor a node then add it to the list
+	root = f;	//if we pass the constructor a node then add it to the list
 }
 public void add(String input)
 {
@@ -163,7 +163,7 @@ public void delete(String input) // here we will delete a node from the tree, re
 		maxcount = selector.getcount();
 		temp.setval(maxleft);
 		temp.setcount(maxcount);
-		previous.setLC(selector.getLC());
+		previous.setLC(selector.getRC());
 		System.out.println(" the word "+input+" was deleted from the tree ");
 		return;
 		}
@@ -182,7 +182,7 @@ public void delete(String input) // here we will delete a node from the tree, re
 			maxcount = selector.getcount();
 			temp.setval(maxleft);
 			temp.setcount(maxcount);
-			previous.setRC(selector.getRC());
+			previous.setRC(selector.getLC());
 			System.out.println(" the word "+input+" was deleted from the tree ");
 			return;
 		}
